@@ -1,0 +1,246 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="grid grid-rows-6 grid-cols-3 mt-10 justify-between">
+  <div
+    class="relative rounded-md col-start-1 col-end-3 row-start-1 row-span-6 w-[90%] hover:scale-95"
+  >
+    {% set news = hot_news | random %}
+    <img
+      src="{{ news.get('urlToImage') }}"
+      alt=""
+      class="rounded-md w-[100%] h-[100%] animate-pulse"
+    />
+	<a href="{{ news.get('url')}}">
+    <div
+      class="flex flex-col absolute bottom-0 p-10 bg-gradient-to-t from-buzzorange to-transparent justify-end h-[50%] w-[100%] hover:h-[100%] cursor-pointer"
+    >
+      <h2 class="text-2xl text-white font-bold font-poppins">
+        {{ news.get('title') }}
+      </h2>
+      <div class="flex text-white">
+        <p>{{ news.get('author') }}</p>
+        <p class="ml-5">{{ news.get('publishedAt') }}</p>
+      </div>
+    </div>
+	</a>
+  </div>
+  <div
+    class="flex flex-row row-start-1 rounded-md col-start-3 h-[50px] w-[100%] items-center justify-center"
+  >
+    <div class="tab-non-active">Hot News</div>
+    <div class="tab-non-active">Latest News</div>
+  </div>
+  <div class="row-start-2 col-start-3 row-span-6 col-span-1">
+    {% for i in range(1, latest_news |length) %} {% if i < 6 %} {% if
+    latest_news[i].get('urlToImage') != 'null' %}
+    <div
+      class="shadow-md rounded-lg mb-5 flex justify-between w-[100%] h-[100px] cursor-pointer hover:scale-105 transition"
+    >
+      <img
+        src="{{ latest_news[i].get('urlToImage') }}"
+        alt=""
+        class="rounded-md w-40"
+      />
+      <div class="ml-3 flex flex-col justify-between">
+        <a href="{{ latest_news[i].get('url') }}" target="_blank">
+          <h3 class="text-lg font-bold font-poppins hover:text-buzzorange">
+            {{ latest_news[i].get('title') }}
+          </h3>
+        </a>
+        <div class="card w-[100%] h-[50px]">
+          {{ latest_news[i].get('description') }}
+        </div>
+        <p class="text-slate-500">{{ latest_news[i].get('publishedAt') }}</p>
+      </div>
+    </div>
+    {% endif %} {% endif %} {% endfor %}
+  </div>
+</section>
+<section class="mt-10">
+  <h2 class="text-4xl font-black text-buzzorange">SubReddit_Posts__ _</h2>
+  <div class="flex justify-center items-center">
+    {% for post in reddit %}
+    <a
+      href="{{ post.get('data').get('url') }}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div
+        class="shadow-lg text-white bg-buzzorange rounded-md ml-3 w-[190px] h-[150px] p-5 mt-5 mb-5 flex justify-between flex-col hover:bg-white hover:text-buzzorange transition-all"
+      >
+        <p class="font-poppins text-md">{{ post.get('data').get('title') }}</p>
+        <div class="flex items-center justify-between">
+          <p class="text-sm flex items-center">
+            <img
+              src="{{ url_for('static', filename='images/people.png') }}"
+              class="w-5 mr-2"
+              alt=""
+            />{{ post.get('data').get('author') }}
+          </p>
+          <p class="flex items-center">
+            <img
+              src="{{ url_for('static', filename='images/comment.png') }}"
+              alt=""
+              class="w-5 mr-2"
+            />{{ post.get('data').get('num_comments') }}
+          </p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+<section class="grid grid-cols-3 transition">
+  {% set new_news = hot_news | random %}
+  <div class="col-start-1 col-span-2">
+    <section class="grid grid-flow-col grid-cols-2 grid-rows-2 mt-5 mb-5">
+      <div
+        class="relative rounded-md col-start-1 row-start-1 row-span-2 w-[90%] mb-5"
+      >
+        <img
+          src="{{ new_news.get('urlToImage') }}"
+          alt=""
+          class="rounded-md w-[100%] h-[100%]"
+        />
+        <a href="{{ news.get('url')}}">
+          <div
+            class="flex flex-col absolute bottom-0 p-10 bg-gradient-to-t from-buzzorange to-transparent justify-end w-[100%] h-[50%] hover:h-[100%] transition-all"
+          >
+            <h2 class="text-2xl text-white font-bold font-poppins">
+              {{ new_news.get('title') }}
+            </h2>
+            <div class="flex text-white">
+              <p>{{ new_news.get('author') }}</p>
+              <p class="ml-5">{{ new_news.get('publishedAt') }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% set side_news = hot_news | random %}
+      <div class="relative rounded-md col-start-2 row-start-2 w-[90%] mb-5">
+        <img
+          src="{{ side_news.get('urlToImage') }}"
+          alt=""
+          class="rounded-md w-[100%] h-[100%]"
+        />
+        <a href="{{ news.get('url')}}">
+          <div
+            class="flex flex-col absolute bottom-0 p-10 bg-gradient-to-t from-buzzorange to-transparent justify-end w-[100%] h-[50%] hover:h-[100%] transition-all"
+          >
+            <h2 class="text-2xl text-white font-bold font-poppins">
+              {{ side_news.get('title') }}
+            </h2>
+            <div class="flex text-white">
+              <p>{{ side_news.get('author') }}</p>
+              <p class="ml-5">{{ side_news.get('publishedAt') }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% set news = latest_news | random %}
+      <div class="relative rounded-md col-start-2 row-start-1 w-[90%] mb-5">
+        <img
+          src="{{ news.get('urlToImage') }}"
+          alt=""
+          class="rounded-md w-[100%] h-[100%]"
+        />
+        <a href="{{ news.get('url')}}">
+          <div
+            class="flex flex-col absolute bottom-0 p-10 bg-gradient-to-t from-buzzorange to-transparent justify-end w-[100%] h-[50%] hover:h-[100%] transition-all"
+          >
+            <h2 class="text-2xl text-white font-bold font-poppins">
+              {{ news.get('title') }}
+            </h2>
+            <div class="flex text-white">
+              <p>{{ news.get('author') }}</p>
+              <p class="ml-5">{{ news.get('publishedAt') }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+    <section class="mb-10 mt-10">
+      <h2 class="text-4xl font-black text-buzzorange mb-5">Airdrops__ _</h2>
+      {% for airdrop in airdrops %}
+      <div
+        class="flex w-[95%] h-[100%] bg-orange-200 shadow-md relative rounded-lg p-5 mb-5 hover:scale-105 transition"
+      >
+        <img src="{{ airdrop.thumbnail_big }}" alt="" class="w-40" />
+        <div class="flex flex-col ml-5 w-[100%]">
+          <h4 class="text-2xl font-black mb-2">
+            {{ airdrop.token }} by {{ airdrop.name }}
+          </h4>
+          <p class="font-poppins mb-3">{{ airdrop.about }}</p>
+          <div class="flex mb-2">
+            <p class="text-blue-700">Rating: {{ airdrop.like_ratio }}%</p>
+            <p class="text-slate-500 absolute mt-3 top-0 right-1">
+              {{ airdrop.days_left }} days left
+            </p>
+          </div>
+          <div class="flex justify-self-end">
+            <a
+              href="{{ airdrop.url_king }}"
+              target="_blank"
+              class="rounded-full border bg-buzzorange text-white font-black p-3"
+              >Go to Airdrop</a
+            >
+            <a
+              href="{{ airdrop.url_airdrop }}"
+              target="_blank"
+              class="rounded-full border bg-buzzorange text-white font-black p-3 ml-5"
+              >Bonus Page</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </div>
+  <div class="col-start-3">
+    <gecko-coin-heatmap-widget
+      locale="en"
+      transparent-background="true"
+      outlined="true"
+      top="100"
+    ></gecko-coin-heatmap-widget>
+    <crypto-converter-widget
+      amount="1"
+      shadow="true"
+      symbol="true"
+      live="true"
+      fiat="united-states-dollar"
+      crypto="bitcoin"
+      font-family="inherit"
+      background-color="#1e40af"
+      decimal-places="2"
+      border-radius="0.5rem"
+    ></crypto-converter-widget>
+    <div
+      class="sticky top-0 self-start border shadow-xl rounded-lg flex items-center flex-col sm:h-[300px] md:h-[400px] sm:w-[300px] md:w-[400px] p-5 mt-20"
+    >
+      <h3 class="font-roboto font-black text-2xl">Feed an Orphan Today</h3>
+      <img
+        src="{{ url_for('static', filename='images/wallet_adresses.png') }}"
+        alt=""
+        class="w-60 mt-10 mb-10"
+      />
+      <p class="flex">
+        <img
+          src="{{ url_for('static', filename='images/sol.png') }}"
+          alt=""
+          class="w-5"
+        />
+        Solana: 7h2ZLFq2qpBP9EuYxMqEpubYnH9LfLkDVVW8xYPJD1yo
+      </p>
+      <p class="flex">
+        <img
+          src="{{ url_for('static', filename='images/btc.png') }}"
+          alt=""
+          class="w-5"
+        />
+        Bitcoin: bc1q0tldn54uckgf4xuup7cpuegwf5c0wns2l7l6tw
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

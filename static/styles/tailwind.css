@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+	.navlink {
+		@apply text-2xl hover:text-buzzorange font-medium cursor-pointer select-none;
+	}
+	.tab-non-active{
+		@apply w-[50%] h-[100%] text-2xl bg-orange-300 flex items-center justify-center active:bg-buzzorange active:text-white cursor-pointer;
+	}
+	.card{
+		display: -webkit-box;
+		-webkit-box-orient: horizontal;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+	}
+}

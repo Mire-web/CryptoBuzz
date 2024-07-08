@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mx-auto my-auto w-auto">
+	<h1 class="text-6xl font-black font-poppins text-buzzorange hover:text-black cursor-not-allowed">News</h1>
+</div>
+<section class="grid md:grid-cols-3 sm:grid-cols-1 items-center justify-center">
+	{% for news in hot_news %}
+	<div
+    class="relative rounded-md w-[400px] h-[300px] m-5 hover:scale-95 transition-all"
+  >
+    <img
+      src="{{ news.get('urlToImage') or url_for('static', filename='images/logo.svg') }}"
+      alt=""
+      class="rounded-md w-[100%] h-[100%]"
+    />
+	<a href="{{ news.get('url') }}">
+    <div
+      class="flex flex-col absolute bottom-0 p-10 bg-gradient-to-t from-buzzorange to-transparent justify-end h-[50%] w-[100%] hover:h-[100%] cursor-pointer transition-all"
+    >
+      <h2 class="text-2xl text-white font-bold font-poppins">
+		{{ news.get('title') }}
+      </h2>
+      <div class="flex text-white">
+        <p>{{ news.get('author') }}</p>
+        <p class="ml-5">{{ news.get('publishedAt') }}</p>
+      </div>
+    </div>
+	</a>
+  </div>
+	{% endfor %}
+</section>
+{% endblock %}
