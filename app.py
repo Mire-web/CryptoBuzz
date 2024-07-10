@@ -3,14 +3,12 @@ from flask import Flask, render_template
 import requests
 from dotenv import load_dotenv
 import os
-from newsapi import NewsApiClient
 
 load_dotenv()
 app = Flask(__name__)
 headers = {'User-Agent': 'cryptobuzz-app 1.0'}
 news_data_key = os.getenv('NEWS_DATA_KEY')
 news_api_key = os.getenv('NEWS_API_KEY')
-newsapi = NewsApiClient(api_key='{}'.format(news_api_key))
 
 try:
     Airdrops = requests.get('https://api.airdropking.io/airdrops/?amount=10&order=best').json()
@@ -32,6 +30,10 @@ try:
 except Exception:
     hot_news = []
 
+@app.errorhandler(404)
+def not_found(e):
+    render_template('404.html')
+
 @app.route('/')
 def home():
     return render_template('index.html', airdrops=Airdrops,
@@ -43,7 +45,14 @@ def home():
 def news_page():
     return render_template('news_gallery.html',
     hot_news=hot_news)
+    
+@app.route('/airdrops')
+def airdrop_page():
+    return render_template('airdrops.html', airdrops=Airdrops)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

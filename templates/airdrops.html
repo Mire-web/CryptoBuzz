@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-auto mr-auto w-auto mb-10 hover:text-orange-400 text-center font-black font-poppins text-buzzorange cursor-pointer">
+	<h1 class="text-6xl">Airdrops</h1>
+	<p>{{ '_' * 50 }}</p>
+</div>
+<section>
+	{% for airdrop in airdrops %}
+	<div
+	class="flex w-[100%] h-[100%] bg-orange-200 shadow-md relative rounded-lg p-5 mb-5 hover:scale-105 transition"
+  >
+	<img src="{{ airdrop.thumbnail_big }}" alt="" class="w-40" />
+	<div class="flex flex-col ml-5 w-[100%]">
+	  <h4 class="text-2xl font-black mb-2">
+		{{ airdrop.token }} by {{ airdrop.name }}
+	  </h4>
+	  <p class="font-poppins mb-3">{{ airdrop.about }}</p>
+	  <div class="flex mb-2">
+		<p class="text-blue-700">Rating: {{ airdrop.like_ratio }}%</p>
+		<p class="text-slate-500 absolute mt-3 top-0 right-1">
+		  {{ airdrop.days_left }} days left
+		</p>
+	  </div>
+	  <div class="flex justify-self-end">
+		<a
+		  href="{{ airdrop.url_king }}"
+		  target="_blank"
+		  class="rounded-full border bg-buzzorange text-white font-black p-3"
+		  >Go to Airdrop</a
+		>
+		<a
+		  href="{{ airdrop.url_airdrop }}"
+		  target="_blank"
+		  class="rounded-full border bg-buzzorange text-white font-black p-3 ml-5"
+		  >Bonus Page</a
+		>
+	  </div>
+	</div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}
