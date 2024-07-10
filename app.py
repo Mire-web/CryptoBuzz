@@ -9,6 +9,7 @@ app = Flask(__name__)
 headers = {'User-Agent': 'cryptobuzz-app 1.0'}
 news_data_key = os.getenv('NEWS_DATA_KEY')
 news_api_key = os.getenv('NEWS_API_KEY')
+PORT = os.getenv('PORT') or 5000
 
 try:
     Airdrops = requests.get('https://api.airdropking.io/airdrops/?amount=10&order=best').json()
@@ -55,4 +56,4 @@ def about():
     return render_template('about.html')
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=PORT, debug=True)
