@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="mx-auto my-auto w-auto">
-	<h1 class="text-6xl font-black font-poppins text-buzzorange hover:text-black cursor-not-allowed">News</h1>
-</div>
+<section class="px-20">
+	<div class="ml-auto mr-auto w-auto mb-10 hover:text-orange-400 text-center font-black font-poppins text-buzzorange cursor-pointer">
+		<h1 class="text-6xl">News</h1>
+		<p>{{ '_' * 50 }}</p>
+	</div>
 <section class="grid md:grid-cols-3 sm:grid-cols-1 items-center justify-center">
 	{% for news in hot_news %}
 	<div
@@ -29,5 +31,6 @@
 	</a>
   </div>
 	{% endfor %}
+</section>
 </section>
 {% endblock %}

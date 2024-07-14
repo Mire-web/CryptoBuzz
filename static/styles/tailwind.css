@@ -15,4 +15,10 @@
 		-webkit-line-clamp: 3;
 		overflow: hidden;
 	}
+	.about-odd{
+		@apply w-[100%] flex flex-col items-center mb-5 text-2xl font-roboto font-bold bg-slate-50 p-5 justify-center;
+	}
+	.about-even{
+		@apply w-[100%] justify-center flex flex-col items-center mb-5 text-2xl font-roboto font-bold bg-orange-50 p-5;
+	}
 }

@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1 class="font-black text-5xl">Sorry that page doesn't exist <span class="text-buzzorange">YET</span>, Use the NavBar</h1>
-
+<section class="px-20 bg-no-repeat bg-cover h-[100vh]" style="background-image: url('./static/images/404.png');">
+<div class="ml-auto mr-auto mx-auto my-auto w-fit">
+<h1 class="font-black text-9xl">Sorry that page doesn't exist <span class="text-buzzorange">YET</span>, Use the NavBar</h1>
+<button id="home_button" class="border-buzzorange text-buzzorange font-bold text-4xl border-2 shadow-lg rounded-full p-10 hover:bg-buzzorange hover:border-slate-500 hover:text-white">Go Home</button>
+</div>
+</section>
 {% endblock %}

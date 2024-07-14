@@ -1,14 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
- <h1>CryptoBuzz</h1>
- <h2>Your one stop for all things crypto</h2>
- <p>We are your trusted information provider, for latest happening on the web3 space</p>
- <p>Read tons of articles from curated knowledge base</p>
- <p>Participate in legit airdrop campaigns</p>
- <p>Stay on top of the latest happenings with our news</p>
- <iframe src="https://lottie.host/embed/bcbdb60a-fa4d-4fbc-9a72-082a419661a8/y0b52fBpR1.json" class="w-[500px]"></iframe>
- <p>All in one web app</p>
+<section>
+	<div class="ml-auto mr-auto mb-10 mt-5 w-fit cursor-pointer">
+		<h1 class="font-black hover:text-buzzorange text-9xl">Crypto<span class="text-buzzorange hover:text-black">Buzz</span></h1>
+		</div>	
+</section>
+<section>
+	<div class="about-odd">
+		<p class="hover:text-buzzorange cursor-pointer" style="text-decoration: underline;">Your one stop for all things crypto</p>
+		<img src="{{url_for('static', filename='images/infographic.png')}}" class="w-[300px]"/>
+	 </div>
+	 <div class="about-even">
+		<p class="hover:text-buzzorange cursor-pointer" style="text-decoration: underline;">We are your trusted information provider, for latest happening on the web3 space</p>
+		<div class="flex justify-center">
+			<img src="{{url_for('static', filename='images/service.png')}}" class="w-[300px]"/>
+			<img src="{{url_for('static', filename='images/service-2.png')}}" class="w-[300px]"/>
+		</div>
+	 </div>
+	 <div class="about-odd">
+		<p class="hover:text-buzzorange cursor-pointer" style="text-decoration: underline;">Read tons of articles from curated knowledge base</p>
+		<div class="flex justify-center">
+			<img src="{{url_for('static', filename='images/chaininfo.png')}}" class="w-[300px]"/>
+			<img src="{{url_for('static', filename='images/blockinfo.png')}}" class="w-[300px]"/>
+		</div>
+	 </div>
+	 <div class="about-even">
+		<p class="hover:text-buzzorange cursor-pointer" style="text-decoration: underline;">Participate in legit airdrop campaigns</p>
+		<img src="{{url_for('static', filename='images/airdrop.png')}}" class="w-[300px]"/>
+	 </div>
+	 <div class="about-odd">
+		<p class="hover:text-buzzorange cursor-pointer" style="text-decoration: underline;">Stay on top of the latest happenings with our news</p>
+		<div>
+			<img src="{{url_for('static', filename='images/blockchain.png')}}" class="w-[300px]"/>
+		</div>
+	 </div>
+	 <div class="about-even">
+		<p class="hover:text-buzzorange cursor-pointer" style="text-decoration: underline;">All in one web app</p>
+		<div class="flex justify-center">
+			<img src="{{url_for('static', filename='images/all-in-one.png')}}" class="w-[300px]"/>
+			<img src="{{url_for('static', filename='images/all-in-one-2.png')}}" class="w-[300px]"/>
+		</div>
+	 </div>
+</section>
 
 {% endblock %}
