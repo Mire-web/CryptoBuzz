@@ -68,7 +68,7 @@ def airdrops_display():
 
 @app.route('/about')
 def about_us():
-    return render_template('about.html')
+    return redirect('https://amahe8664.wixsite.com/cryptobuzz')
 
 if __name__ == '__main__':
     app.run(port=PORT, debug=True)
