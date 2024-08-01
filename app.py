@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Apis for cryptobuzz webapp
+author: Mirey-dev
+"""
 from flask import Flask, render_template
 import requests
 from dotenv import load_dotenv
@@ -11,6 +15,8 @@ news_data_key = os.getenv('NEWS_DATA_KEY')
 news_api_key = os.getenv('NEWS_API_KEY')
 cg_api_key = os.getenv('CG_KEY')
 PORT = os.getenv('PORT') or 5000
+
+# Request Data to populate app
 try:
     Airdrops = requests.get('https://api.airdropking.io/airdrops/?amount=10&order=best').json()
 except Exception:
@@ -49,6 +55,9 @@ def not_found(e):
 
 @app.route('/')
 def home():
+    """
+    Define route for homepage
+    """
     return render_template('index.html', airdrops=Airdrops,
     reddit=Reddit_posts[2:8],
     latest_news=latest_news,
@@ -59,15 +68,24 @@ def home():
 
 @app.route('/news')
 def news_page():
+    """
+    Define route for newspage
+    """
     return render_template('news_gallery.html',
     hot_news=hot_news)
     
 @app.route('/airdrops')
 def airdrops_display():
+    """
+    Define route for airdrop page
+    """
     return render_template('airdrops.html', airdrops=Airdrops)
 
 @app.route('/about')
 def about_us():
+    """
+    Define route for Landing page
+    """
     return redirect('https://amahe8664.wixsite.com/cryptobuzz')
 
 if __name__ == '__main__':
