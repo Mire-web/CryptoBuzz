@@ -37,17 +37,17 @@ try:
 except Exception:
     hot_news = []
     
-try:
-    headers = {
-		"accept": "application/json",
-		"x-cg-demo-api-key": cg_api_key
-	}
-    Cryptolist_trending = requests.get('https://api.coingecko.com/api/v3/search/trending', headers=headers).json()
-    coins = Cryptolist_trending.get('coins')
-    nfts = Cryptolist_trending.get('nfts')
-    categories = Cryptolist_trending.get('categories')
-except Exception:
-    Cryptolist_trending = []
+# try:
+#     headers = {
+# 		"accept": "application/json",
+# 		"x-cg-demo-api-key": cg_api_key
+# 	}
+#     Cryptolist_trending = requests.get('https://api.coingecko.com/api/v3/search/trending', headers=headers).json()
+#     coins = Cryptolist_trending.get('coins')
+#     nfts = Cryptolist_trending.get('nfts')
+#     categories = Cryptolist_trending.get('categories')
+# except Exception:
+#     Cryptolist_trending = []
 
 @app.errorhandler(404)
 def not_found(e):
@@ -62,9 +62,10 @@ def home():
     reddit=Reddit_posts[2:8],
     latest_news=latest_news,
     hot_news=hot_news,
-    coins=coins if len(coins) > 0 else [],
-    nfts=nfts if len(nfts) > 0 else [],
-    categories=categories if len(categories) > 0 else [])
+    # coins=coins if len(coins) > 0 else [],
+    # nfts=nfts if len(nfts) > 0 else [],
+    # categories=categories if len(categories) > 0 else []
+    )
 
 @app.route('/news')
 def news_page():
